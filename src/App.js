@@ -3,6 +3,7 @@ import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import About from './pages/About';
+import Category from './pages/Category';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import NotFound from "./pages/NotFound"
@@ -16,6 +17,7 @@ function App() {
           <Route exact path='/' component={Home} />
           <Route path='/about' component={About} />
           <Route path='/contacts' component={Contact} />
+          <Route path='/category/:name' component={Category }/>
           <Route component={NotFound}/>
         </Switch>
       </main>
