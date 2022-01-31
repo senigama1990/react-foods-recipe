@@ -6,8 +6,13 @@ import Loader from '../components/Loader'
 
 function Recipe() {
   const [recipe, setRecipe] = useState([])
+  const [showRecipe, setShowRecipe] = useState(false)
   const { id } = useParams()
   const { goBack } = useHistory()
+
+  function handleRecipeShow() {
+    setShowRecipe(prev => !prev)
+  }
 
   useEffect(() => {
     getMealById(id).then(data => setRecipe(data.meals[0]))
@@ -23,8 +28,9 @@ function Recipe() {
           <h4>{recipe.strCategory}</h4>
           <h6>{recipe.strArea ? recipe.strArea : 'not given'}</h6>
           <p>{recipe.strInstructions}</p>
-
-          <table className="centered">
+          <button className="btn" onClick={handleRecipeShow}>Show Recipe</button>
+          {showRecipe ? (
+            <table className="centered">
             <thead>
               <tr>
                 <th>Ingridients</th>
@@ -35,7 +41,7 @@ function Recipe() {
               {Object.keys(recipe).map((key) => {
                 if (key.includes('Ingredient') && recipe[key]) {
                   return (
-                    <tr>
+                    <tr key={id}>
                       <td>
                         {recipe[key]}
                       </td>
@@ -47,7 +53,8 @@ function Recipe() {
                 }
               })}
             </tbody>
-          </table>
+          </table>) : null}
+          
 
           {recipe.strYoutube ? (
             <div className="row">
