@@ -7,6 +7,7 @@ import Category from './pages/Category';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import NotFound from "./pages/NotFound"
+import Recipe from './pages/Recipe';
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Route path='/about' component={About} />
           <Route path='/contacts' component={Contact} />
           <Route path='/category/:name' component={Category }/>
-          <Route component={NotFound}/>
+          <Route path='/meal/:id' component={Recipe}/>
+          <Route component={NotFound} />
         </Switch>
       </main>
       <Footer />
